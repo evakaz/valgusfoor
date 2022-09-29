@@ -1,35 +1,42 @@
-int jRedLed = 12;
-int jGreenLed = 13;
-int jGreenLed2 = 5;
-int jRedLed2 = 6;
-int RedLed = 9;
+int jRedLed = 10;
+int jGreenLed = 9;
+//int jGreenLed2 = 5;
+//int jRedLed2 = 6;
+int RedLed = 13;
 int GreenLed = 11;
-int YellowLed = 10;
-int Button1 = 1;
-int Button2 = 2;
+int YellowLed = 12;
+int Button1 = 8;
+//int Button2 = 2;
 int button1State;
-int button2State;
+//int button2State;
+//string delayTIme;
+int delayTime;
+int rDelayTime;
+int gDelayTime;
+int yDelayTime;
+char ledColor;
 
 
 
 void setup() 
 {
     pinMode(jRedLed, OUTPUT);
-    pinMode(jRedLed2, OUTPUT);
+    //pinMode(jRedLed2, OUTPUT);
     pinMode(jGreenLed, OUTPUT);
-    pinMode(jGreenLed2, OUTPUT);
+    //pinMode(jGreenLed2, OUTPUT);
     pinMode(RedLed, OUTPUT);
     pinMode(GreenLed, OUTPUT);
     pinMode(YellowLed, OUTPUT);
     pinMode(Button1, INPUT);
-    pinMode(Button2, INPUT);
+    //pinMode(Button2, INPUT);
     digitalWrite(jRedLed, LOW);
-    digitalWrite(jRedLed2, LOW);
+    //digitalWrite(jRedLed2, LOW);
     digitalWrite(jGreenLed, LOW);
-    digitalWrite(jGreenLed2, LOW);
+    //digitalWrite(jGreenLed2, LOW);
     digitalWrite(RedLed, LOW);
     digitalWrite(YellowLed, LOW);
     digitalWrite(GreenLed, HIGH);
+    Serial.begin(9600);
 
 }
 
@@ -39,9 +46,11 @@ void setup()
 //kui red, ss jalakaijal green 
 void loop() 
 {
+    char ledColor = Serial.read();
+    int delayTime = Serial.parseInt();
     button1State = digitalRead(Button1);
-    button2State = digitalRead(Button2);
-    if (button1State == HIGH or button2State == HIGH)
+//    button2State = digitalRead(Button2);
+    if (button1State == HIGH)
     {
       vilkumine();
     }
@@ -51,20 +60,37 @@ void loop()
 void vilkumine()
 {
   yellowLed();
-  delay(1000);
+  delay(yDelayTime);
   redLed();
-  delay(1000);
+  delay(rDelayTime);
   greenLed();
+  delay(gDelayTime);
 }
 
+
+void changeDelay()
+{
+  if (ledColor == "R")
+  {
+    rDelayTime = delayTime;
+  }
+  if (ledColor == "G")
+  {
+    gDelayTime = delayTime;
+  }
+  if (ledColor == "Y")
+  {
+    yDelayTime = delayTime;
+  }
+}
 
 void greenLed()
 {
   digitalWrite(GreenLed, HIGH);
   digitalWrite(jRedLed, HIGH);
-  digitalWrite(jRedLed2, HIGH);
+  ///digitalWrite(jRedLed2, HIGH);
   digitalWrite(jGreenLed, LOW);
-  digitalWrite(jGreenLed2, LOW);
+  //digitalWrite(jGreenLed2, LOW);
   digitalWrite(RedLed, LOW);
   digitalWrite(YellowLed, LOW);
 }
@@ -74,9 +100,9 @@ void yellowLed()
 {
   digitalWrite(GreenLed, LOW);
   digitalWrite(jRedLed, HIGH);
-  digitalWrite(jRedLed2, HIGH);
+  //digitalWrite(jRedLed2, HIGH);
   digitalWrite(jGreenLed, LOW);
-  digitalWrite(jGreenLed2, LOW);
+  //digitalWrite(jGreenLed2, LOW);
   digitalWrite(RedLed, LOW);
   digitalWrite(YellowLed, HIGH);
 }
@@ -86,9 +112,9 @@ void redLed()
 {
   digitalWrite(GreenLed, LOW);
   digitalWrite(jRedLed, LOW);
-  digitalWrite(jRedLed2, LOW);
+  //digitalWrite(jRedLed2, LOW);
   digitalWrite(jGreenLed, HIGH);
-  digitalWrite(jGreenLed2, HIGH);
+  //digitalWrite(jGreenLed2, HIGH);
   digitalWrite(RedLed, HIGH);
   digitalWrite(YellowLed, LOW);
 }
