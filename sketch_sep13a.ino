@@ -21,18 +21,13 @@ char ledColor;
 void setup() 
 {
     pinMode(jRedLed, OUTPUT);
-    //pinMode(jRedLed2, OUTPUT);
     pinMode(jGreenLed, OUTPUT);
-    //pinMode(jGreenLed2, OUTPUT);
     pinMode(RedLed, OUTPUT);
     pinMode(GreenLed, OUTPUT);
     pinMode(YellowLed, OUTPUT);
     pinMode(Button1, INPUT);
-    //pinMode(Button2, INPUT);
     digitalWrite(jRedLed, LOW);
-    //digitalWrite(jRedLed2, LOW);
     digitalWrite(jGreenLed, LOW);
-    //digitalWrite(jGreenLed2, LOW);
     digitalWrite(RedLed, LOW);
     digitalWrite(YellowLed, LOW);
     digitalWrite(GreenLed, HIGH);
@@ -118,33 +113,3 @@ void redLed()
   digitalWrite(RedLed, HIGH);
   digitalWrite(YellowLed, LOW);
 }
-/*void checkState()
-  {
-    if (digitalRead(GreenLed) == HIGH or button1State == HIGH or button2State == HIGH)
-        {
-        digitalWrite(jRedLed, HIGH);
-        digitalWrite(jRedLed2, HIGH);
-        digitalWrite(jGreenLed, LOW);
-        digitalWrite(jGreenLed2, LOW);
-        digitalWrite(RedLed, LOW);
-        digitalWrite(YellowLed, LOW);
-        }
-      if (digitalRead(YellowLed) == HIGH or button1State == HIGH or button2State == HIGH)
-         {
-         digitalWrite(jRedLed, HIGH);
-         digitalWrite(jRedLed2, HIGH);
-         digitalWrite(jGreenLed, LOW);
-         digitalWrite(jGreenLed2, LOW);
-         digitalWrite(RedLed, LOW);
-         digitalWrite(GreenLed, LOW);
-          }
-      if (digitalRead(RedLed) == HIGH)
-      {
-          digitalWrite(jGreenLed2, HIGH);
-          digitalWrite(jGreenLed, HIGH);
-          digitalWrite(jRedLed, LOW);
-          digitalWrite(jRedLed2, LOW);
-          digitalWrite(GreenLed, LOW);
-          digitalWrite(YellowLed, LOW);
-      }
-    }*/
